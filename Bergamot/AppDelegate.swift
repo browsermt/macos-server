@@ -16,6 +16,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let executableURL = URL(fileURLWithPath: "/usr/bin/say")
     
     let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
+    let startServerMenuItem = NSMenuItem(title: "Start Server", action: #selector(AppDelegate.startServer(_:)), keyEquivalent: "R")
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         if let button = statusItem.button {
@@ -28,8 +29,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func constructMenu() {
         let menu = NSMenu()
-
-        menu.addItem(NSMenuItem(title: "Start Bergamot Server", action: #selector(AppDelegate.startServer(_:)), keyEquivalent: "S"))
+        menu.autoenablesItems = false
+        
+        menu.addItem(startServerMenuItem)
         menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem(title: "Quit Bergamot", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
 
@@ -42,13 +44,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
-        serverProcess.terminate()
+        if serverProcess.isRunning {
+            serverProcess.terminate()
+        }
     }
     
     @objc func startServer(_ sender: Any?) {
-        if false == serverProcess.isRunning {
-            try! serverProcess.run()
-        }
+        try! serverProcess.run()
+        startServerMenuItem.isEnabled = false
     }
 }
 
