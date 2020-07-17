@@ -12,8 +12,6 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     let serverProcess = Process()
-    let commandLineArguments = ["Started server"]
-    let executableURL = URL(fileURLWithPath: "/usr/bin/say")
     
     let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
     let startServerMenuItem = NSMenuItem(title: "Start Server", action: #selector(AppDelegate.startServer(_:)), keyEquivalent: "R")
@@ -39,8 +37,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func constructProcess() {
-        serverProcess.executableURL = executableURL
-        serverProcess.arguments = commandLineArguments
+        let serverURL = Bundle.main.url(forResource: "server/rest-server", withExtension: nil)
+        let configFile = Bundle.main.path(forResource: "config", ofType: "yml", inDirectory: "model")
+
+        serverProcess.executableURL = serverURL
+        serverProcess.arguments = ["-c", configFile!, "-p", "8787", "--log-level", "debug", "-w", "5000"]
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
