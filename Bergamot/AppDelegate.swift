@@ -11,7 +11,8 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    let serverProcess = Process()
+    let inboundServerProcess = Process()
+    let outboundServerProcess = Process()
     
     let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
     let startServerMenuItem = NSMenuItem(title: "Start Server", action: #selector(AppDelegate.startServer(_:)), keyEquivalent: "R")
@@ -38,20 +39,28 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func constructProcess() {
         let serverURL = Bundle.main.url(forResource: "server/rest-server", withExtension: nil)
-        let configFile = Bundle.main.path(forResource: "config", ofType: "yml", inDirectory: "model")
+        let inbooundConfigFile = Bundle.main.path(forResource: "config", ofType: "yml", inDirectory: "inboundModel")
+        let outbooundConfigFile = Bundle.main.path(forResource: "config", ofType: "yml", inDirectory: "outboundModel")
 
-        serverProcess.executableURL = serverURL
-        serverProcess.arguments = ["-c", configFile!, "-p", "8787", "--log-level", "debug", "-w", "5000"]
+        inboundServerProcess.executableURL = serverURL
+        inboundServerProcess.arguments = ["-c", inbooundConfigFile!, "-p", "8787", "--log-level", "debug", "-w", "5000"]
+
+        outboundServerProcess.executableURL = serverURL
+        outboundServerProcess.arguments = ["-c", outbooundConfigFile!, "-p", "8788", "--log-level", "debug", "-w", "5000"]
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
-        if serverProcess.isRunning {
-            serverProcess.terminate()
+        if inboundServerProcess.isRunning {
+            inboundServerProcess.terminate()
+        }
+        if outboundServerProcess.isRunning {
+            outboundServerProcess.terminate()
         }
     }
     
     @objc func startServer(_ sender: Any?) {
-        try! serverProcess.run()
+        try! inboundServerProcess.run()
+        try! outboundServerProcess.run()
         startServerMenuItem.isEnabled = false
     }
 }

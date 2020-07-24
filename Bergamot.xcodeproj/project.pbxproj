@@ -11,8 +11,9 @@
 		46A5313A24C1A6B5002F0EBA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46A5313924C1A6B5002F0EBA /* ViewController.swift */; };
 		46A5313C24C1A6B6002F0EBA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46A5313B24C1A6B6002F0EBA /* Assets.xcassets */; };
 		46A5313F24C1A6B6002F0EBA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46A5313D24C1A6B6002F0EBA /* Main.storyboard */; };
-		46A5314824C203F2002F0EBA /* model in Resources */ = {isa = PBXBuildFile; fileRef = 46A5314724C203F2002F0EBA /* model */; };
+		46A5314824C203F2002F0EBA /* inboundModel in Resources */ = {isa = PBXBuildFile; fileRef = 46A5314724C203F2002F0EBA /* inboundModel */; };
 		46A5314A24C212BE002F0EBA /* server in Resources */ = {isa = PBXBuildFile; fileRef = 46A5314924C212BE002F0EBA /* server */; };
+		46FF5AFA24CAD0FE0087F38E /* outboundModel in Resources */ = {isa = PBXBuildFile; fileRef = 46FF5AF924CAD0FE0087F38E /* outboundModel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,8 +24,9 @@
 		46A5313E24C1A6B6002F0EBA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		46A5314024C1A6B6002F0EBA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		46A5314124C1A6B6002F0EBA /* Bergamot.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Bergamot.entitlements; sourceTree = "<group>"; };
-		46A5314724C203F2002F0EBA /* model */ = {isa = PBXFileReference; lastKnownFileType = folder; path = model; sourceTree = "<group>"; };
+		46A5314724C203F2002F0EBA /* inboundModel */ = {isa = PBXFileReference; lastKnownFileType = folder; path = inboundModel; sourceTree = "<group>"; };
 		46A5314924C212BE002F0EBA /* server */ = {isa = PBXFileReference; lastKnownFileType = folder; path = server; sourceTree = "<group>"; };
+		46FF5AF924CAD0FE0087F38E /* outboundModel */ = {isa = PBXFileReference; lastKnownFileType = folder; path = outboundModel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,8 +43,9 @@
 		46A5312B24C1A6B5002F0EBA = {
 			isa = PBXGroup;
 			children = (
+				46FF5AF924CAD0FE0087F38E /* outboundModel */,
 				46A5314924C212BE002F0EBA /* server */,
-				46A5314724C203F2002F0EBA /* model */,
+				46A5314724C203F2002F0EBA /* inboundModel */,
 				46A5313624C1A6B5002F0EBA /* Bergamot */,
 				46A5313524C1A6B5002F0EBA /* Products */,
 			);
@@ -127,8 +130,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46FF5AFA24CAD0FE0087F38E /* outboundModel in Resources */,
 				46A5314A24C212BE002F0EBA /* server in Resources */,
-				46A5314824C203F2002F0EBA /* model in Resources */,
+				46A5314824C203F2002F0EBA /* inboundModel in Resources */,
 				46A5313C24C1A6B6002F0EBA /* Assets.xcassets in Resources */,
 				46A5313F24C1A6B6002F0EBA /* Main.storyboard in Resources */,
 			);
